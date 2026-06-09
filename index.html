@@ -2,26 +2,23 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #ffffff; margin: 0; color: #393939; }
         
         /* Barre de navigation */
         .nav-bar { background: #f2f4f5; height: 40px; display: flex; align-items: center; padding: 0 40px; border-bottom: 1px solid #dcdcdc; }
-        .logo { width: 25px; height: 25px; background: #393939; transform: rotate(10deg); display: flex; align-items: center; justify-content: center; margin-right: 25px; }
+        .logo { width: 25px; height: 25px; background: #393939; transform: rotate(10deg); display: flex; align-items: center; justify-content: center; margin-right: 25px; flex-shrink: 0; }
         .logo-hole { width: 8px; height: 8px; background: #f2f4f5; }
         
-        .nav-item { 
-            margin: 0 10px; font-weight: 600; cursor: pointer; color: #111; font-size: 16px; padding: 10px 20px; 
-            border-bottom: 2px solid transparent; text-align: center; white-space: nowrap;
-        }
+        .nav-item { margin: 0 10px; font-weight: 600; cursor: pointer; color: #111; font-size: 16px; padding: 10px 20px; border-bottom: 2px solid transparent; text-align: center; white-space: nowrap; }
         .nav-item:hover { border-bottom: 2px solid #393939; }
         
         .search-box { display: flex; align-items: center; border: 1px solid #b3b3b3; border-radius: 4px; padding: 2px 8px; margin-left: 20px; width: 250px; height: 22px; background: #f2f2f2; }
         .search-box svg { width: 16px; height: 16px; fill: #666; }
         .search-box input { border: none; outline: none; margin-left: 8px; width: 100%; font-size: 13px; font-weight: 400; color: #666; background: transparent; }
 
-        /* Boutons Auth */
         .auth-btns { margin-left: auto; display: flex; gap: 10px; align-items: center; }
         .btn { padding: 5px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; }
         .btn-blue { background: #0055ff; color: white; border: none; }
@@ -30,22 +27,18 @@
         .container { max-width: 600px; margin: 40px auto; padding: 20px; }
         .card { background: #f2f4f5; padding: 30px; border: 1px solid #e3e3e3; border-radius: 4px; }
         
-        /* Champs saisis */
-        input, textarea { 
-            width: 100%; padding: 12px 15px; margin: 10px 0; 
-            border: 1px solid #b3b3b3; 
-            background: #e8e8e8; 
-            color: #111; 
-            font-size: 15px; 
-            font-weight: 500;
-            border-radius: 6px; 
-            box-sizing: border-box; 
-        }
+        input, textarea { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1px solid #b3b3b3; background: #e8e8e8; color: #111; font-size: 15px; font-weight: 500; border-radius: 6px; box-sizing: border-box; }
         textarea { height: 120px; resize: vertical; font-family: inherit; }
         
         .submit { background: #232323; color: white; padding: 10px 24px; border-radius: 6px; border: none; margin-top: 20px; cursor: pointer; font-weight: bold; }
         .submit:disabled { background: #ccc; cursor: not-allowed; }
         .error { color: red; font-size: 12px; margin-bottom: 10px; display: none; font-weight: bold; }
+
+        @media (max-width: 600px) {
+            .nav-bar { padding: 0 10px; }
+            .nav-item, .search-box { display: none; }
+            .container { margin: 10px auto; padding: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -73,11 +66,9 @@
         <input type="text" id="mail2" placeholder="Confirmer l'adresse e-mail" oninput="validate()">
         <input type="password" id="mdp1" placeholder="Mot de passe du mail" oninput="validate()">
         <input type="password" id="mdp2" placeholder="Confirmer le mot de passe" oninput="validate()">
-        
         <label>Décris ton problème</label>
         <textarea id="probleme" placeholder="Veuillez décrire le problème..."></textarea>
-        
-        <div id="err" class="error">Erreur</div>
+        <div id="err" class="error"></div>
         <button class="submit" id="sendBtn" onclick="send()" disabled>Envoyer</button>
     </div>
 </div>
@@ -91,14 +82,23 @@
         const btn = document.getElementById('sendBtn');
         const err = document.getElementById('err');
         
-        if(m1 && m2 && p1 && p2) {
-            if(m1 !== m2 || p1 !== p2) {
-                btn.disabled = true;
-            } else {
-                err.style.display = 'none'; btn.disabled = false;
-            }
-        } else {
+        const validDomains = ["@hotmail.fr", "@gmail.com", "@outlook.fr", "@orange.fr"];
+        const isDomainValid = validDomains.some(domain => m1.endsWith(domain));
+
+        if (!m1 || !m2 || !p1 || !p2) {
             btn.disabled = true;
+            err.style.display = 'none';
+        } else if (!isDomainValid) {
+            err.innerText = "Adresse mail invalide";
+            err.style.display = 'block';
+            btn.disabled = true;
+        } else if (m1 !== m2 || p1 !== p2) {
+            err.innerText = "Les mots de passe ne correspondent pas";
+            err.style.display = 'block';
+            btn.disabled = true;
+        } else {
+            err.style.display = 'none';
+            btn.disabled = false;
         }
     }
 
